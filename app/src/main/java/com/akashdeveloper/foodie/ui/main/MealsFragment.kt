@@ -23,7 +23,7 @@ class MealsFragment : Fragment() {
         val mealsView : RecyclerView = v.findViewById(R.id.meals_view)
         mealsView.layoutManager = GridLayoutManager(context, 2)
         val mealsViewModel : MealsViewModel = ViewModelProviders.of(this).get(MealsViewModel::class.java!!)
-        mealsViewModel.allCatogery?.observe(this,
+        mealsViewModel.getCatogeries()?.observe(this,
             Observer<ArrayList<CatogeryResponse.Catogery>> { t ->
                 if(t != null) {
                     val catogeryAdapter = CatogeryAdapter(t)
