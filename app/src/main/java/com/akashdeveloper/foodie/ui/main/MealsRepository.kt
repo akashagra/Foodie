@@ -1,13 +1,12 @@
 package com.akashdeveloper.foodie.ui.main
 
-import android.app.Application
-import android.arch.lifecycle.LiveData
 import com.akashdeveloper.foodie.Api
 import com.akashdeveloper.foodie.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Response
 import kotlin.collections.ArrayList
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 import retrofit2.Callback
 
 
@@ -19,8 +18,8 @@ class MealsRepository {
         api = RetrofitInstance.retrofitInstance?.create(Api::class.java)
     }
 
-    fun getCatogeries(): MutableLiveData<CatogeryResponse> {
-        val catogeries = MutableLiveData<CatogeryResponse>()
+    fun getCatogeries(): MutableLiveData<ArrayList<CatogeryResponse.Catogery>> {
+        val catogeries = MutableLiveData<ArrayList<CatogeryResponse.Catogery>>()
         if (api != null) {
             api.getCatogeries().enqueue(object : Callback<CatogeryResponse> {
                 override fun onResponse(
@@ -28,7 +27,7 @@ class MealsRepository {
                     response: Response<CatogeryResponse>
                 ) {
                     if (response.isSuccessful()) {
-                        catogeries.setValue(response.body())
+                        catogeries.setValue(response.body()?.categories)
                     }
                 }
 

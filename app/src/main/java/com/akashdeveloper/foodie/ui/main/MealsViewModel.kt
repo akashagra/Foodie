@@ -7,7 +7,7 @@ class MealsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val mRepository: MealsRepository
 
-    val allCatogery: MutableLiveData<CatogeryResponse>
+    var allCatogery: MutableLiveData<ArrayList<CatogeryResponse.Catogery>>? = null
 
     init {
         mRepository = MealsRepository()

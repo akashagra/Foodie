@@ -5,9 +5,9 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class CatogeryResponse {
-    @SerializedName("catogeries")
+    @SerializedName("categories")
     @Expose
-    val catogeries: LiveData<List<Catogery>>? = null
+     var categories: ArrayList<Catogery>? = null
 
     class Catogery {
 

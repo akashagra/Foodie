@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface Api {
     @GET("categories.php")
-    abstract fun getCatogeries(): Call<CatogeryResponse>
+    fun getCatogeries(): Call<CatogeryResponse>
 }
