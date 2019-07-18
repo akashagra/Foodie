@@ -8,11 +8,7 @@ import kotlin.collections.ArrayList
 import android.arch.lifecycle.MutableLiveData
 import com.akashdeveloper.foodie.CatogeryMocktailResponse
 import retrofit2.Callback
-
-
 class MealsRepository {
-
-
     fun getCatogeries(): MutableLiveData<ArrayList<CatogeryResponse.Catogery>> {
        val api = RetrofitInstance.retrofitInstanceMeals?.create(Api::class.java)
         val catogeries = MutableLiveData<ArrayList<CatogeryResponse.Catogery>>()

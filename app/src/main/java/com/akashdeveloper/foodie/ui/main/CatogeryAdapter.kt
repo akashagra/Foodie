@@ -11,7 +11,11 @@ import com.akashdeveloper.foodie.R
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.catogery_adapter.view.*
 
-class CatogeryAdapter(val catogerylist : ArrayList<CatogeryResponse.Catogery>): RecyclerView.Adapter<CatogeryAdapter.ViewHolder>() {
+class CatogeryAdapter(val catogerylist : ArrayList<CatogeryResponse.Catogery>, val mListener : CategoryClickedListener): RecyclerView.Adapter<CatogeryAdapter.ViewHolder>() {
+    interface CategoryClickedListener {
+        fun onItemClick(view: View, position: Int)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.catogery_adapter, parent, false)
         return ViewHolder(v)
@@ -25,11 +29,24 @@ class CatogeryAdapter(val catogerylist : ArrayList<CatogeryResponse.Catogery>): 
         holder.bindItems(catogerylist[position])
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindItems(catogery : CatogeryResponse.Catogery) {
+   inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        fun bindItems(catogery: CatogeryResponse.Catogery) {
             itemView.region_image.controller
             itemView.region_image.setImageURI(Uri.parse(catogery.image))
             itemView.region_text.text = catogery.title
+            itemView.setOnClickListener(this)
+
+        }
+
+        override fun onClick(v: View?) {
+            val id = v?.getId()
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                if (id == R.id.catogery_item) {
+                    mListener.onItemClick(v, position)
+                }
+            }
         }
     }
 }
+

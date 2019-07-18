@@ -10,7 +10,9 @@ class CatogeryResponse {
      var categories: ArrayList<Catogery>? = null
 
     class Catogery {
-
+        @SerializedName("idCategory")
+        @Expose
+        var id: Int? = null
         @SerializedName("strCategory")
         @Expose
         var title: String? = null

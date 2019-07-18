@@ -8,7 +8,6 @@ class MealsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val mRepository: MealsRepository
 
-
     init {
         mRepository = MealsRepository()
     }
