@@ -7,6 +7,7 @@ import retrofit2.Response
 import kotlin.collections.ArrayList
 import android.arch.lifecycle.MutableLiveData
 import com.akashdeveloper.foodie.CatogeryMocktailResponse
+import com.akashdeveloper.foodie.ItemResponse
 import retrofit2.Callback
 class MealsRepository {
     fun getCatogeries(): MutableLiveData<ArrayList<CatogeryResponse.Catogery>> {
@@ -51,6 +52,28 @@ class MealsRepository {
             })
         }
         return catogeries
+    }
+    fun getItem(id: String?): MutableLiveData<ArrayList<ItemResponse.Item>> {
+        val api = RetrofitInstance.retrofitInstanceMeals?.create(Api::class.java)
+        val items = MutableLiveData<ArrayList<ItemResponse.Item>>()
+        if(api !=null) {
+           api.getItem(id).enqueue(object : Callback<ItemResponse>{
+               override fun onResponse(
+                   call: Call<ItemResponse>,
+                   response: Response<ItemResponse>
+               ) {
+                   if (response.isSuccessful()) {
+                       items.setValue(response.body()?.meals)
+                   }
+               }
+
+               override fun onFailure(call: Call<ItemResponse>, t: Throwable) {
+                   items.setValue(null)
+               }
+           })
+
+        }
+        return items
     }
 
     companion object {

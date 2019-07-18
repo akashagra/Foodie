@@ -31,7 +31,8 @@ class MealsFragment : Fragment() {
                     val catogeryAdapter = CatogeryAdapter(t, object : CatogeryAdapter.CategoryClickedListener {
                         override fun onItemClick(view: View, position: Int) {
                             val intent = Intent(activity, MealsItemActivity::class.java)
-                            intent.putExtra("FragmentId",t.get(position).id)
+                            intent.putExtra("CategoryTitle",t.get(position).title)
+                            startActivity(intent)
                         }
 
                     })

@@ -10,8 +10,9 @@ class MealsItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_meals_item)
         val intent = intent
         val transaction = this.getSupportFragmentManager().beginTransaction()
-        transaction.add(R.id.container, MealsItemFragment.newInstance(intent.getIntExtra("FragmentId", 0)))
-        transaction.addToBackStack(null)
+        if(intent.getStringExtra("CategoryTitle") != null) {
+            transaction.add(R.id.container, MealsItemFragment.newInstance(intent.getStringExtra("CategoryTitle")))
+        }
         transaction.commit()
     }
 }

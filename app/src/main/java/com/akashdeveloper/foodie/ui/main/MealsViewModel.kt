@@ -3,6 +3,7 @@ package com.akashdeveloper.foodie.ui.main
 import android.app.Application
 import android.arch.lifecycle.*
 import com.akashdeveloper.foodie.CatogeryMocktailResponse
+import com.akashdeveloper.foodie.ItemResponse
 
 class MealsViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -18,5 +19,9 @@ class MealsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getMocktailsCatogeries(): MutableLiveData<ArrayList<CatogeryMocktailResponse.Catogery>> {
         return mRepository.getMocktailCatogeries()
+    }
+
+    fun getItems(id: String?) : MutableLiveData<ArrayList<ItemResponse.Item>> {
+        return mRepository.getItem(id)
     }
 }

@@ -31,11 +31,9 @@ class CatogeryAdapter(val catogerylist : ArrayList<CatogeryResponse.Catogery>, v
 
    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         fun bindItems(catogery: CatogeryResponse.Catogery) {
-            itemView.region_image.controller
             itemView.region_image.setImageURI(Uri.parse(catogery.image))
             itemView.region_text.text = catogery.title
             itemView.setOnClickListener(this)
-
         }
 
         override fun onClick(v: View?) {
