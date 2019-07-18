@@ -32,6 +32,7 @@ class MealsFragment : Fragment() {
                         override fun onItemClick(view: View, position: Int) {
                             val intent = Intent(activity, MealsItemActivity::class.java)
                             intent.putExtra("CategoryTitle",t.get(position).title)
+                            intent.putExtra("CategoryImage",t.get(position).image)
                             startActivity(intent)
                         }
 

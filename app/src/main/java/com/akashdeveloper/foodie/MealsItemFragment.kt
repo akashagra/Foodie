@@ -12,17 +12,19 @@ import android.view.ViewGroup
 import com.akashdeveloper.foodie.ui.main.CatogeryAdapter
 import com.akashdeveloper.foodie.ui.main.CatogeryResponse
 import com.akashdeveloper.foodie.ui.main.MealsViewModel
+import com.facebook.drawee.view.SimpleDraweeView
 import java.util.ArrayList
 
 class MealsItemFragment : Fragment() {
     var categoryId : String? = null
-
+    var categoryImage: String? = null
     companion object {
         @JvmStatic
-        fun newInstance(id: String): MealsItemFragment {
+        fun newInstance(id: String, image: String): MealsItemFragment {
             val mealsItemFragment = MealsItemFragment()
             val args = Bundle()
             args.putString("CategoryTitle", id)
+            args.putString("CategoryImage", image)
             mealsItemFragment.arguments = args
             return mealsItemFragment
         }
@@ -31,11 +33,14 @@ class MealsItemFragment : Fragment() {
         super.onCreate(savedInstanceState)
         if(arguments != null) {
             categoryId = arguments?.getString("CategoryTitle")
+            categoryImage = arguments?.getString("CategoryImage")
         }
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.meals_item_screen, container, false)
         val mealsItemView : RecyclerView = v.findViewById(R.id.meals_item_view)
+        val mealsImage : SimpleDraweeView = v.findViewById(R.id.cover_image)
+        mealsImage.setImageURI(categoryImage)
         mealsItemView.layoutManager = GridLayoutManager(context, 2)
         val mealsItemViewModel : MealsViewModel = ViewModelProviders.of(this).get(MealsViewModel::class.java!!)
         mealsItemViewModel.getItems(categoryId)?.observe(this,

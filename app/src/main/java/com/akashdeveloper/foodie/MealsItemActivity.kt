@@ -11,7 +11,7 @@ class MealsItemActivity : AppCompatActivity() {
         val intent = intent
         val transaction = this.getSupportFragmentManager().beginTransaction()
         if(intent.getStringExtra("CategoryTitle") != null) {
-            transaction.add(R.id.container, MealsItemFragment.newInstance(intent.getStringExtra("CategoryTitle")))
+            transaction.add(R.id.container, MealsItemFragment.newInstance(intent.getStringExtra("CategoryTitle"), intent.getStringExtra("CategoryImage")))
         }
         transaction.commit()
     }
