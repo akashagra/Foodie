@@ -26,7 +26,7 @@ class CatogeryMocktailsAdapter(val categoryMocktailList: ArrayList<CatogeryMockt
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindItems(catogery : CatogeryMocktailResponse.Catogery) {
-            itemView.region_image.setImageURI(Uri.parse(catogery.image))
+            itemView.category_image.setImageURI(Uri.parse(catogery.image))
             itemView.region_text.text = catogery.title
         }
     }

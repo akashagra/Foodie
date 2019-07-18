@@ -1,11 +1,14 @@
 package com.akashdeveloper.foodie.ui.main
 
+import android.app.ActivityOptions
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
+import android.support.v4.app.SharedElementCallback
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -18,6 +21,7 @@ import com.akashdeveloper.foodie.R
 import kotlinx.android.synthetic.*
 import java.util.*
 import kotlin.collections.ArrayList
+import android.app.SharedElementCallback as SharedElementCallback1
 
 class MealsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,7 +37,34 @@ class MealsFragment : Fragment() {
                             val intent = Intent(activity, MealsItemActivity::class.java)
                             intent.putExtra("CategoryTitle",t.get(position).title)
                             intent.putExtra("CategoryImage",t.get(position).image)
-                            startActivity(intent)
+                            activity?.let {
+                                ActivityCompat.setExitSharedElementCallback(it, object : SharedElementCallback() {
+                                    override fun onSharedElementEnd(
+                                        sharedElementNames: List<String>,
+                                        sharedElements: List<View>,
+                                        sharedElementSnapshots: List<View>
+                                    ) {
+
+                                        super.onSharedElementEnd(
+                                            sharedElementNames, sharedElements,
+                                            sharedElementSnapshots
+                                        )
+
+                                        for (view in sharedElements) {
+                                            view.visibility = View.VISIBLE
+                                        }
+                                    }
+                                })
+                            }
+
+                            var bundle = ActivityOptions
+                                .makeSceneTransitionAnimation(
+                                    activity,
+                                    view.findViewById(R.id.category_image),
+                                    "cover_image_transition"
+                                ).toBundle()
+
+                            startActivity(intent, bundle)
                         }
 
                     })
