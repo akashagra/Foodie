@@ -25,7 +25,6 @@
             android:id="@+id/tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Desserts"
             android:textSize="25dp"
             android:paddingLeft="20dp"
             android:fontFamily="cursive"
@@ -38,6 +37,7 @@
             android:background="@android:color/darker_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv"/>
+
     <android.support.v7.widget.RecyclerView android:id="@+id/meals_item_view"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"

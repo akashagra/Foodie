@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.akashdeveloper.foodie.ui.main.CatogeryAdapter
 import com.akashdeveloper.foodie.ui.main.CatogeryResponse
 import com.akashdeveloper.foodie.ui.main.MealsViewModel
@@ -40,6 +41,8 @@ class MealsItemFragment : Fragment() {
         val v = inflater.inflate(R.layout.meals_item_screen, container, false)
         val mealsItemView : RecyclerView = v.findViewById(R.id.meals_item_view)
         val mealsImage : SimpleDraweeView = v.findViewById(R.id.cover_image)
+        val textView : TextView = v.findViewById(R.id.tv)
+        textView.setText(categoryId)
         mealsImage.setImageURI(categoryImage)
         mealsItemView.layoutManager = GridLayoutManager(context, 2)
         val mealsItemViewModel : MealsViewModel = ViewModelProviders.of(this).get(MealsViewModel::class.java!!)
