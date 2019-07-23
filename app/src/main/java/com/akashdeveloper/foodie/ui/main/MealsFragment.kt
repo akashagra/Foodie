@@ -19,6 +19,8 @@ import android.view.ViewGroup
 import com.akashdeveloper.foodie.MealsItemActivity
 import com.akashdeveloper.foodie.R
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.meals_screen.*
+import kotlinx.android.synthetic.main.meals_screen.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 import android.app.SharedElementCallback as SharedElementCallback1
@@ -26,8 +28,8 @@ import android.app.SharedElementCallback as SharedElementCallback1
 class MealsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.meals_screen, container, false)
-        val mealsView : RecyclerView = v.findViewById(R.id.meals_view)
-        mealsView.layoutManager = GridLayoutManager(context, 2)
+//        val mealsView : RecyclerView = v.findViewById(R.id.meals_view)
+        v.meals_view.layoutManager = GridLayoutManager(context, 2)
         val mealsViewModel : MealsViewModel = ViewModelProviders.of(this).get(MealsViewModel::class.java!!)
         mealsViewModel.getCatogeries()?.observe(this,
             Observer<ArrayList<CatogeryResponse.Catogery>> { t ->
@@ -68,7 +70,7 @@ class MealsFragment : Fragment() {
                         }
 
                     })
-                    mealsView.adapter = catogeryAdapter
+                    v.meals_view.adapter = catogeryAdapter
                 }
             })
         return v

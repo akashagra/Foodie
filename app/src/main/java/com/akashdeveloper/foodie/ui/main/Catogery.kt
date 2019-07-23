@@ -15,6 +15,6 @@ class CatogeryResponse {
         var title: String? = null
         @SerializedName("strCategoryThumb")
         @Expose
-        var image: String? = null
+         var image: String? = null
     }
 }
