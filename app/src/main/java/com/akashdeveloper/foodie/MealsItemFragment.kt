@@ -52,7 +52,12 @@ class MealsItemFragment : Fragment() {
                 if(t != null) {
                     val itemAdapter = ItemAdapter(t, object : ItemAdapter.ItemClickedListener {
                         override fun onItemClick(view: View, position: Int) {
-
+                            val transaction = fragmentManager?.beginTransaction()
+                            if (transaction != null) {
+                                transaction.add(R.id.container, RecipeFragment())
+                                transaction.addToBackStack(null)
+                                transaction.commit()
+                            }
                         }
 
                     })
@@ -61,8 +66,8 @@ class MealsItemFragment : Fragment() {
             })
         return v
     }
-
 }
+
 
 
 

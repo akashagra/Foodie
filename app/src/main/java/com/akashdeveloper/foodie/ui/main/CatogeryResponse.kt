@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class CatogeryResponse {
+ class CatogeryResponse {
     @SerializedName("categories")
     @Expose
      var categories: ArrayList<Catogery>? = null
